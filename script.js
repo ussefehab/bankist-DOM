@@ -13,6 +13,9 @@ const nav = document.querySelector('.nav');
 const header = document.querySelector('.header');
 const allSections = document.querySelectorAll('.section');
 const imgTargets = document.querySelectorAll('img[data-src]');
+const tabsContainer = document.querySelector('.operations__tab-container');
+const tabs = document.querySelectorAll('.operations__tab');
+const tabsContent = document.querySelectorAll('.operations__content');
 const navHeight = nav.getBoundingClientRect().height;
 // console.log(navHeight)
 
@@ -50,7 +53,17 @@ navLinks.addEventListener('click',function(e){
     document.querySelector(id).scrollIntoView({behavior:'smooth'});
   }
 });
-
+//tabs
+tabsContainer.addEventListener('click',function (e) {
+  const clicked =e.target.closest('.operations__tab');
+  //guard clause
+  if (!clicked) return;
+  tabs.forEach(t => t.classList.remove('operations__tab--active'));
+  clicked.classList.add('operations__tab--active');
+  //activate content area
+  tabsContent.forEach(c => c.classList.remove('operations__content--active'));
+  document.querySelector(`.operations__content--${clicked.dataset.tab}`).classList.add('operations__content--active');
+})
 //menu fade animation
 //function
 const handelHover =function(e){
