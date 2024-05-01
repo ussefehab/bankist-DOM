@@ -10,8 +10,9 @@ const section1 = document.querySelector('#section--1');
 const btnScrollTo = document.querySelector('.btn--scroll-to');
 const navLinks = document.querySelector('.nav__links');
 const nav = document.querySelector('.nav');
-
-
+const header = document.querySelector('.header');
+const navHeight = nav.getBoundingClientRect().height;
+// console.log(navHeight)
 
 // creating the open and close modal
 //functions
@@ -67,3 +68,20 @@ nav.addEventListener('mouseover',handelHover.bind(0.5))
 nav.addEventListener('mouseout',handelHover.bind(1))
 
 //sticky navigation
+//function
+const stickyNav = function(entries){
+  const [entry] = entries;
+  if (!entry.isIntersecting) nav.classList.add('sticky');
+  else nav.classList.remove('sticky');
+}
+
+const headerObserver = new IntersectionObserver(stickyNav,
+{
+  root:null,
+  threshold:0,
+  rootMargin:`-${navHeight}px`
+})
+
+headerObserver.observe(header);
+
+//reveal sections 
