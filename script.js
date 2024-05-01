@@ -6,6 +6,9 @@ const modal = document.querySelector('.modal');
 const overlay = document.querySelector('.overlay');
 const btnCloseModal = document.querySelector('.btn--close-modal');
 const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
+const section1 = document.querySelector('#section--1');
+const btnScrollTo = document.querySelector('.btn--scroll-to');
+
 
 
 // creating the open and close modal
@@ -29,3 +32,6 @@ if (  e.key==='Escape'&& !modal.classList.contains('hidden')) closeModal();
 });
 
 //creating the smooth scroll on learn more btn
+btnScrollTo.addEventListener('click', function () {
+  section1.scrollIntoView({ behavior: 'smooth' });
+});
