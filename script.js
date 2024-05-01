@@ -11,6 +11,7 @@ const btnScrollTo = document.querySelector('.btn--scroll-to');
 const navLinks = document.querySelector('.nav__links');
 const nav = document.querySelector('.nav');
 const header = document.querySelector('.header');
+const allSections = document.querySelectorAll('.section');
 const navHeight = nav.getBoundingClientRect().height;
 // console.log(navHeight)
 
@@ -85,3 +86,17 @@ const headerObserver = new IntersectionObserver(stickyNav,
 headerObserver.observe(header);
 
 //reveal sections 
+const sectionObserver = new IntersectionObserver(function (entries) {
+  const [entry] = entries;
+  if (!entry.isIntersecting) return;
+  entry.target.classList.remove('section--hidden');
+  sectionObserver.unobserve(entry.target);
+},
+{
+  root:null,
+  threshold:0.15
+})
+allSections.forEach(function (section) {
+  sectionObserver.observe(section);
+  section.classList.add('section--hidden');
+});
