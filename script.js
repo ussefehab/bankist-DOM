@@ -190,6 +190,7 @@ const slider=function(){
 
   btnRight.addEventListener('click',nextSlide);
   btnLeft.addEventListener('click',prevSlide); 
+  
 
 }
 slider();
